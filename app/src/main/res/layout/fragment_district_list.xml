@@ -6,10 +6,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <ListView
             android:id="@+id/district_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             tools:listitem="@layout/list_item_district" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

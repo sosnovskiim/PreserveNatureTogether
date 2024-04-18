@@ -8,20 +8,21 @@ import com.example.preservenaturetogether.data.SiteRepository
 import com.example.preservenaturetogether.viewmodels.DistrictListViewModelFactory
 
 object InjectorUtils {
-    private fun getDistrictsRepository(context: Context) =
+    private fun getDistrictRepository(context: Context) =
         DistrictRepository.getInstance(context = context)
 
-    private fun getCategoriesRepository(context: Context) =
+    private fun getCategoryRepository(context: Context) =
         CategoryRepository.getInstance(context = context)
 
-    private fun getEcoConditionsRepository(context: Context) =
+    private fun getEcoConditionRepository(context: Context) =
         EcoConditionRepository.getInstance(context = context)
 
-    private fun getSitesRepository(context: Context) =
+    private fun getSiteRepository(context: Context) =
         SiteRepository.getInstance(context = context)
 
     fun provideDistrictViewModelFactory(context: Context) =
         DistrictListViewModelFactory(
-            districtRepository = getDistrictsRepository(context = context),
+            districtRepository = getDistrictRepository(context = context),
+            siteRepository = getSiteRepository(context = context),
         )
 }

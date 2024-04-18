@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.preservenaturetogether.adapters.DistrictListAdapter
 import com.example.preservenaturetogether.databinding.FragmentDistrictListBinding
 import com.example.preservenaturetogether.utilities.InjectorUtils
@@ -30,9 +29,10 @@ class DistrictListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.districtList.layoutManager = LinearLayoutManager(requireContext())
         binding.districtList.adapter = DistrictListAdapter(
             districtList = viewModel.districtList,
+            context = requireContext(),
+            siteRepository = viewModel.siteRepository,
         )
     }
 }

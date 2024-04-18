@@ -35,11 +35,11 @@ class SiteRepository(context: Context) {
                         ecoConditionId = cursor.getInt(cursor.getColumnIndex("_ecoConditionId")),
                         name = cursor.getString(cursor.getColumnIndex("_name")),
                         description = cursor.getString(cursor.getColumnIndex("_description")),
-                        suggestion = cursor.getString(cursor.getColumnIndex("_suggestion")),
+                        suggestion = cursor.getString(cursor.getColumnIndex("_suggestion")) ?: "",
                         latitude = cursor.getFloat(cursor.getColumnIndex("_latitude")),
                         longitude = cursor.getFloat(cursor.getColumnIndex("_longitude")),
                         photo1 = cursor.getString(cursor.getColumnIndex("_photo1")),
-                        photo2 = cursor.getString(cursor.getColumnIndex("_photo2")),
+                        photo2 = cursor.getString(cursor.getColumnIndex("_photo2")) ?: "",
                     )
                 } while (cursor.moveToNext())
             }
