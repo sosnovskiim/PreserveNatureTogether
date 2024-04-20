@@ -29,10 +29,12 @@ class DistrictListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.districtList.adapter = DistrictListAdapter(
-            districtList = viewModel.districtList,
-            context = requireContext(),
-            siteRepository = viewModel.siteRepository,
+        binding.districtList.setAdapter(
+            DistrictListAdapter(
+                context = requireContext(),
+                districtList = viewModel.districtList,
+                siteList = viewModel.siteList,
+            )
         )
     }
 }

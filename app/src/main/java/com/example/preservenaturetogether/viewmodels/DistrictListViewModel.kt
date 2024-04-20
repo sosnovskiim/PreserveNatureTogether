@@ -9,9 +9,17 @@ import com.example.preservenaturetogether.data.SiteRepository
 
 class DistrictListViewModel(
     districtRepository: DistrictRepository,
-    val siteRepository: SiteRepository,
+    private val siteRepository: SiteRepository,
 ) : ViewModel() {
     val districtList: List<District> = districtRepository.getDistrictList()
+    val siteList: List<List<Site>>
+        get() {
+            val result: MutableList<List<Site>> = mutableListOf()
+            districtList.forEach { district: District ->
+                result.add(siteRepository.getSiteListByDistrict(districtId = district.id))
+            }
+            return result
+        }
 }
 
 class DistrictListItemViewModel(
@@ -31,9 +39,8 @@ class DistrictListViewModelFactory(
     private val siteRepository: SiteRepository,
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>) =
-        DistrictListViewModel(
-            districtRepository,
-            siteRepository,
-        ) as T
+    override fun <T : ViewModel> create(modelClass: Class<T>) = DistrictListViewModel(
+        districtRepository,
+        siteRepository,
+    ) as T
 }

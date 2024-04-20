@@ -13,7 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/district_photo"
@@ -25,31 +25,22 @@
             android:contentDescription="@{viewModel.districtName}"
             android:scaleType="centerCrop"
             android:src="@drawable/d01"
-            app:layout_constraintBottom_toTopOf="@id/site_list"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="UnusedAttribute" />
 
         <TextView
             android:id="@+id/district_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:fontFamily="@font/sweet_mavka_script"
             android:gravity="center"
             android:text="@{viewModel.districtName}"
             android:textColor="@color/white"
-            android:textSize="32sp"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@id/district_photo"
             app:layout_constraintTop_toTopOf="@id/district_photo"
             tools:text="Название района" />
-
-        <ListView
-            android:id="@+id/site_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/district_photo"
-            tools:listitem="@layout/list_item_site" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
