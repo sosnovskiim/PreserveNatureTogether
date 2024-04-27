@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/site_eco_condition"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:padding="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/historical_poor" />
+
+                <TextView
+                    android:id="@+id/site_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:fontFamily="@font/sweet_mavka_script"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    tools:text="Название памятника" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/site_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/calibri"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                tools:text="Описание памятника" />
+
+            <TextView
+                android:id="@+id/site_suggestion_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sweet_mavka_script"
+                android:padding="10dp"
+                android:text="&#x1F33F; Предложения юных экологов"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/site_suggestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/calibri"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:visibility="gone"
+                tools:text="Предложения юных экологов" />
+
+            <ImageView
+                android:id="@+id/site_photo1"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_outline"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/h001"
+                tools:ignore="UnusedAttribute" />
+
+            <ImageView
+                android:id="@+id/site_photo2"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_outline"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/h002"
+                android:visibility="gone"
+                tools:ignore="UnusedAttribute" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sweet_mavka_script"
+                    android:padding="10dp"
+                    android:text="&#x1F4CD; Координаты:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/site_coordinates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    tools:text="51.52634, 46.040783" />
+
+            </LinearLayout>
+
+            <org.osmdroid.views.MapView
+                android:id="@+id/site_map"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_margin="10dp"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.preservenaturetogether.R
 import com.example.preservenaturetogether.adapters.DistrictListAdapter
 import com.example.preservenaturetogether.databinding.FragmentDistrictListBinding
 import com.example.preservenaturetogether.utilities.InjectorUtils
@@ -29,10 +30,20 @@ class DistrictListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.districtList.addHeaderView(
+            layoutInflater.inflate(
+                R.layout.header_district_list,
+                binding.districtList,
+                false
+            ),
+            R.string.app_name,
+            false
+        )
         binding.districtList.setAdapter(
             DistrictListAdapter(
-                context = requireContext(),
+                fragment = this,
                 districtList = viewModel.districtList,
+                categoryList = viewModel.categoryList,
                 siteList = viewModel.siteList,
             )
         )

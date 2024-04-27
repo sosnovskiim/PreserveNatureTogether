@@ -1,14 +1,18 @@
-package com.example.preservenaturetogether.data
+package com.example.preservenaturetogether.repository
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
+import com.example.preservenaturetogether.data.DatabaseHelper
+import com.example.preservenaturetogether.data.EcoCondition
 import java.io.IOException
 
 @SuppressLint("Range")
-class CategoryRepository(context: Context) {
-    private var categoryList: List<Category> = listOf()
+class EcoConditionRepository(context: Context) {
+    private var ecoConditionList: List<EcoCondition> = listOf()
+
+    fun getEcoCondition(ecoConditionId: Int): EcoCondition = ecoConditionList[ecoConditionId - 1]
 
     init {
         val databaseHelper = DatabaseHelper(context)
@@ -24,11 +28,11 @@ class CategoryRepository(context: Context) {
             throw mSQLException
         }
         database.rawQuery(
-            "SELECT * FROM Category", null
+            "SELECT * FROM EcoCondition", null
         ).use { cursor ->
             if (cursor.moveToFirst()) {
                 do {
-                    categoryList += Category(
+                    ecoConditionList += EcoCondition(
                         id = cursor.getInt(cursor.getColumnIndex("_id")),
                         name = cursor.getString(cursor.getColumnIndex("_name")),
                     )
@@ -37,16 +41,12 @@ class CategoryRepository(context: Context) {
         }
     }
 
-    fun getCategory(categoryId: Int): Category = categoryList[categoryId - 1]
-
-    fun getCategoryList(): List<Category> = categoryList
-
     companion object {
         @Volatile
-        private var instance: CategoryRepository? = null
+        private var instance: EcoConditionRepository? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
-                instance ?: CategoryRepository(context = context).also { instance = it }
+                instance ?: EcoConditionRepository(context = context).also { instance = it }
             }
     }
 }

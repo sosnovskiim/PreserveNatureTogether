@@ -1,14 +1,21 @@
-package com.example.preservenaturetogether.data
+package com.example.preservenaturetogether.repository
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
+import com.example.preservenaturetogether.data.Category
+import com.example.preservenaturetogether.data.DatabaseHelper
+import com.example.preservenaturetogether.data.EcoCondition
 import java.io.IOException
 
 @SuppressLint("Range")
-class EcoConditionRepository(context: Context) {
-    private var ecoConditionList: List<EcoCondition> = listOf()
+class CategoryRepository(context: Context) {
+    private var categoryList: List<Category> = listOf()
+
+    fun getCategoryList(): List<Category> = categoryList
+
+    fun getCategory(categoryId: Int): Category = categoryList[categoryId - 1]
 
     init {
         val databaseHelper = DatabaseHelper(context)
@@ -24,11 +31,11 @@ class EcoConditionRepository(context: Context) {
             throw mSQLException
         }
         database.rawQuery(
-            "SELECT * FROM EcoCondition", null
+            "SELECT * FROM Category", null
         ).use { cursor ->
             if (cursor.moveToFirst()) {
                 do {
-                    ecoConditionList += EcoCondition(
+                    categoryList += Category(
                         id = cursor.getInt(cursor.getColumnIndex("_id")),
                         name = cursor.getString(cursor.getColumnIndex("_name")),
                     )
@@ -37,16 +44,12 @@ class EcoConditionRepository(context: Context) {
         }
     }
 
-    fun getEcoCondition(ecoConditionId: Int): EcoCondition = ecoConditionList[ecoConditionId - 1]
-
-    fun getEcoConditionList(): List<EcoCondition> = ecoConditionList
-
     companion object {
         @Volatile
-        private var instance: EcoConditionRepository? = null
+        private var instance: CategoryRepository? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
-                instance ?: EcoConditionRepository(context = context).also { instance = it }
+                instance ?: CategoryRepository(context = context).also { instance = it }
             }
     }
 }

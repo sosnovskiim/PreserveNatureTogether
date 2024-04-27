@@ -1,14 +1,18 @@
-package com.example.preservenaturetogether.data
+package com.example.preservenaturetogether.repository
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
+import com.example.preservenaturetogether.data.DatabaseHelper
+import com.example.preservenaturetogether.data.District
 import java.io.IOException
 
 @SuppressLint("Range")
 class DistrictRepository(context: Context) {
     private var districtList: List<District> = listOf()
+
+    fun getDistrictList(): List<District> = districtList
 
     init {
         val databaseHelper = DatabaseHelper(context)
@@ -37,10 +41,6 @@ class DistrictRepository(context: Context) {
             }
         }
     }
-
-    fun getDistrict(districtId: Int): District = districtList[districtId - 1]
-
-    fun getDistrictList(): List<District> = districtList
 
     companion object {
         @Volatile

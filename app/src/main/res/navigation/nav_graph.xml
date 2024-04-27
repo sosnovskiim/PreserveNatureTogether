@@ -8,6 +8,32 @@
     <fragment
         android:id="@+id/district_list_fragment"
         android:name="com.example.preservenaturetogether.fragments.DistrictListFragment"
-        tools:layout="@layout/fragment_district_list" />
+        tools:layout="@layout/fragment_district_list">
+
+        <action
+            android:id="@+id/action_district_list_to_site_gallery"
+            app:destination="@id/site_gallery_fragment" />
+
+        <action
+            android:id="@+id/action_district_list_to_site_article"
+            app:destination="@id/site_article_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/site_gallery_fragment"
+        android:name="com.example.preservenaturetogether.fragments.SiteGalleryFragment"
+        tools:layout="@layout/fragment_site_gallery">
+
+        <action
+            android:id="@+id/action_site_gallery_to_site_article"
+            app:destination="@id/site_article_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/site_article_fragment"
+        android:name="com.example.preservenaturetogether.fragments.SiteArticleFragment"
+        tools:layout="@layout/fragment_site_article" />
 
 </navigation>

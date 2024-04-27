@@ -2,16 +2,20 @@ package com.example.preservenaturetogether.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.preservenaturetogether.data.Category
+import com.example.preservenaturetogether.repository.CategoryRepository
 import com.example.preservenaturetogether.data.District
-import com.example.preservenaturetogether.data.DistrictRepository
+import com.example.preservenaturetogether.repository.DistrictRepository
 import com.example.preservenaturetogether.data.Site
-import com.example.preservenaturetogether.data.SiteRepository
+import com.example.preservenaturetogether.repository.SiteRepository
 
 class DistrictListViewModel(
     districtRepository: DistrictRepository,
+    categoryRepository: CategoryRepository,
     private val siteRepository: SiteRepository,
 ) : ViewModel() {
     val districtList: List<District> = districtRepository.getDistrictList()
+    val categoryList: List<Category> = categoryRepository.getCategoryList()
     val siteList: List<List<Site>>
         get() {
             val result: MutableList<List<Site>> = mutableListOf()
@@ -22,25 +26,34 @@ class DistrictListViewModel(
         }
 }
 
-class DistrictListItemViewModel(
-    private val district: District,
+class DistrictListGroupItemViewModel(
+    district: District,
 ) : ViewModel() {
-    val districtName: String get() = district.name
+    val districtName: String = district.name
 }
 
-class SiteListItemViewModel(
-    private val site: Site,
+class CategoryListChildItemViewModel(
+    category: Category,
 ) : ViewModel() {
-    val siteName: String get() = site.name
+    val categoryName: String = category.name
+}
+
+class SiteListChildItemViewModel(
+    site: Site,
+) : ViewModel() {
+    val siteName: String = site.name
 }
 
 class DistrictListViewModelFactory(
     private val districtRepository: DistrictRepository,
+    private val categoryRepository: CategoryRepository,
     private val siteRepository: SiteRepository,
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>) = DistrictListViewModel(
-        districtRepository,
-        siteRepository,
-    ) as T
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+        DistrictListViewModel(
+            districtRepository = districtRepository,
+            categoryRepository = categoryRepository,
+            siteRepository = siteRepository,
+        ) as T
 }
