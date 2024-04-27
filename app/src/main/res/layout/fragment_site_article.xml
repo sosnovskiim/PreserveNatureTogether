@@ -38,6 +38,18 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/site_eco_condition_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/round_outline_black"
+                android:fontFamily="@font/calibri"
+                android:text="Нажмите на значок, чтобы посмотреть справку."
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/site_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,6 +129,18 @@
                     tools:text="51.52634, 46.040783" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/site_coordinates_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/round_outline_black"
+                android:fontFamily="@font/calibri"
+                android:text="Нажмите на координаты, чтобы скопировать."
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:visibility="gone" />
 
             <org.osmdroid.views.MapView
                 android:id="@+id/site_map"

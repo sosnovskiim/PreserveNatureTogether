@@ -1,6 +1,5 @@
 package com.example.preservenaturetogether.adapters
 
-import android.annotation.SuppressLint
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View

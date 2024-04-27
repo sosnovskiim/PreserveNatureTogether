@@ -13,10 +13,10 @@ class SiteRepository(context: Context) {
     private var siteList: List<Site> = listOf()
 
     fun getSiteListByDistrict(districtId: Int): List<Site> =
-        siteList.filter { it.districtId == districtId }
+        siteList.filter { it.districtId == districtId }.sortedBy { it.name }
 
     fun getSiteListByCategory(categoryId: Int): List<Site> =
-        siteList.filter { it.categoryId == categoryId }
+        siteList.filter { it.categoryId == categoryId }.sortedBy { it.name }
 
     fun getSite(siteId: Int): Site = siteList[siteId - 1]
 

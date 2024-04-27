@@ -3,7 +3,7 @@ package com.example.preservenaturetogether.fragments
 import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
-import android.location.LocationManager
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +13,12 @@ import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import com.example.preservenaturetogether.R
 import com.example.preservenaturetogether.databinding.FragmentSiteArticleBinding
 import com.example.preservenaturetogether.utilities.BUNDLE_KEY_DISTRICT_LIST_SITE_ID
 import com.example.preservenaturetogether.utilities.BUNDLE_KEY_SITE_GALLERY_SITE_ID
+import com.example.preservenaturetogether.utilities.IS_COORDINATES_NOT_COPIED
+import com.example.preservenaturetogether.utilities.IS_DIALOG_NOT_SHOWN_IN_ARTICLE
 import com.example.preservenaturetogether.utilities.InjectorUtils
 import com.example.preservenaturetogether.utilities.REQUEST_KEY_DISTRICT_LIST_SITE_ID
 import com.example.preservenaturetogether.utilities.REQUEST_KEY_SITE_GALLERY_SITE_ID
@@ -23,8 +26,6 @@ import com.example.preservenaturetogether.viewmodels.SiteArticleViewModel
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.overlay.Marker
-import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
-import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
 class SiteArticleFragment : Fragment() {
     private val viewModel: SiteArticleViewModel by viewModels {
@@ -75,6 +76,19 @@ class SiteArticleFragment : Fragment() {
                 viewModel.siteIconName, "drawable", requireContext().packageName
             )
         )
+        val sharedPreferences = requireActivity().getSharedPreferences(
+            resources.getString(R.string.app_name), Context.MODE_PRIVATE
+        )
+        if (sharedPreferences.getBoolean(IS_DIALOG_NOT_SHOWN_IN_ARTICLE, true)) {
+            binding.siteEcoConditionHint.visibility = View.VISIBLE
+        }
+        binding.siteEcoCondition.setOnClickListener {
+            EcoConditionDialogFragment(sharedPreferencesKey = IS_DIALOG_NOT_SHOWN_IN_ARTICLE)
+                .show(childFragmentManager, EcoConditionDialogFragment.TAG)
+            if (sharedPreferences.getBoolean(IS_DIALOG_NOT_SHOWN_IN_ARTICLE, true)) {
+                binding.siteEcoConditionHint.visibility = View.GONE
+            }
+        }
     }
 
     private fun showSiteName() {
@@ -112,6 +126,12 @@ class SiteArticleFragment : Fragment() {
 
     private fun showSiteCoordinates() {
         binding.siteCoordinates.text = viewModel.siteCoordinates
+        val sharedPreferences = requireActivity().getSharedPreferences(
+            resources.getString(R.string.app_name), Context.MODE_PRIVATE
+        )
+        if (sharedPreferences.getBoolean(IS_COORDINATES_NOT_COPIED, true)) {
+            binding.siteCoordinatesHint.visibility = View.VISIBLE
+        }
         binding.siteCoordinates.setOnClickListener {
             requireContext().getSystemService<ClipboardManager>()
                 ?.setPrimaryClip(
@@ -122,6 +142,10 @@ class SiteArticleFragment : Fragment() {
             Toast.makeText(
                 requireContext(), "Координаты скопированы", Toast.LENGTH_SHORT
             ).show()
+            if (sharedPreferences.getBoolean(IS_COORDINATES_NOT_COPIED, true)) {
+                binding.siteCoordinatesHint.visibility = View.GONE
+                sharedPreferences.edit().putBoolean(IS_COORDINATES_NOT_COPIED, false).apply()
+            }
         }
     }
 
