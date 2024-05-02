@@ -63,7 +63,7 @@ class SiteArticleFragment : Fragment() {
         showSiteEcoCondition()
         showSiteName()
         showSiteDescription()
-        showSiteSuggestion()
+        showSiteEcoNotes()
         showSitePhotos()
         showSiteCoordinates()
         showSiteMap()
@@ -99,11 +99,11 @@ class SiteArticleFragment : Fragment() {
         binding.siteDescription.text = viewModel.siteDescription
     }
 
-    private fun showSiteSuggestion() {
-        if (viewModel.siteSuggestion.isNotEmpty()) {
-            binding.siteSuggestionLabel.visibility = View.VISIBLE
-            binding.siteSuggestion.visibility = View.VISIBLE
-            binding.siteSuggestion.text = viewModel.siteSuggestion
+    private fun showSiteEcoNotes() {
+        if (viewModel.siteEcoNotes.isNotEmpty()) {
+            binding.siteEcoNotesLabel.visibility = View.VISIBLE
+            binding.siteEcoNotes.visibility = View.VISIBLE
+            binding.siteEcoNotes.text = viewModel.siteEcoNotes
         }
     }
 

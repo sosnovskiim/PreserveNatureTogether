@@ -35,7 +35,7 @@ data class Site(
     val ecoConditionId: Int = 0,
     val name: String = "",
     val description: String = "",
-    val suggestion: String = "",
+    val ecoNotes: String = "",
     val latitude: Double = 0.0,
     val longitude: Double = 0.0,
     val photo1: String = "",

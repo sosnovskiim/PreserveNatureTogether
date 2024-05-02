@@ -60,18 +60,18 @@
                 tools:text="Описание памятника" />
 
             <TextView
-                android:id="@+id/site_suggestion_label"
+                android:id="@+id/site_eco_notes_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sweet_mavka_script"
                 android:padding="10dp"
-                android:text="&#x1F33F; Предложения юных экологов"
+                android:text="&#x1F33F; Заметки юных экологов"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/site_suggestion"
+                android:id="@+id/site_eco_notes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/calibri"
@@ -79,7 +79,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:visibility="gone"
-                tools:text="Предложения юных экологов" />
+                tools:text="Заметки юных экологов" />
 
             <ImageView
                 android:id="@+id/site_photo1"

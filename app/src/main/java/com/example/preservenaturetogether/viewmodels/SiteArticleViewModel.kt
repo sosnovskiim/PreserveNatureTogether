@@ -46,7 +46,7 @@ class SiteArticleViewModel(
         }
     val siteName: String get() = site.name
     val siteDescription: String get() = site.description
-    val siteSuggestion: String get() = site.suggestion
+    val siteEcoNotes: String get() = site.ecoNotes
     val sitePhoto1: String get() = site.photo1
     val sitePhoto2: String get() = site.photo2
     val siteCoordinates: String

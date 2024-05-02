@@ -45,7 +45,7 @@ class SiteRepository(context: Context) {
                         ecoConditionId = cursor.getInt(cursor.getColumnIndex("_ecoConditionId")),
                         name = cursor.getString(cursor.getColumnIndex("_name")),
                         description = cursor.getString(cursor.getColumnIndex("_description")),
-                        suggestion = cursor.getString(cursor.getColumnIndex("_suggestion")) ?: "",
+                        ecoNotes = cursor.getString(cursor.getColumnIndex("_ecoNotes")) ?: "",
                         latitude = cursor.getDouble(cursor.getColumnIndex("_latitude")),
                         longitude = cursor.getDouble(cursor.getColumnIndex("_longitude")),
                         photo1 = cursor.getString(cursor.getColumnIndex("_photo1")),
