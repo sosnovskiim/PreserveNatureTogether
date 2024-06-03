@@ -3,12 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/district_list_fragment">
+    app:startDestination="@id/user_sign_in_fragment">
+
+    <fragment
+        android:id="@+id/user_sign_in_fragment"
+        android:name="com.example.preservenaturetogether.fragments.UserSignInFragment"
+        tools:layout="@layout/fragment_user_sign_in">
+
+        <action
+            android:id="@+id/action_user_sign_in_to_user_sign_up"
+            app:destination="@id/user_sign_up_fragment" />
+
+        <action
+            android:id="@+id/action_user_sign_in_to_district_list"
+            app:destination="@id/district_list_fragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/user_sign_up_fragment"
+        android:name="com.example.preservenaturetogether.fragments.UserSignUpFragment"
+        tools:layout="@layout/fragment_user_sign_up" />
 
     <fragment
         android:id="@+id/district_list_fragment"
         android:name="com.example.preservenaturetogether.fragments.DistrictListFragment"
         tools:layout="@layout/fragment_district_list">
+
+        <action
+            android:id="@+id/action_district_list_to_user_sign_in"
+            app:destination="@id/user_sign_in_fragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
 
         <action
             android:id="@+id/action_district_list_to_site_gallery"

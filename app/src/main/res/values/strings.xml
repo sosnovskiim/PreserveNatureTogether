@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Сохраним природу вместе</string>
     <string name="site_gallery_label">Галерея фото</string>
+    <string name="user_sign_in_label">Авторизация</string>
+    <string name="user_login_hint">Логин</string>
+    <string name="user_password_hint">Пароль</string>
+    <string name="user_sign_in_button">Войти</string>
+    <string name="user_sign_in_success">Вы успешно авторизованы</string>
+    <string name="user_sign_in_error">Неверные данные</string>
+    <string name="user_sign_up_note">Нет аккаунта?</string>
+    <string name="user_sign_up_button">Создать аккаунт</string>
+    <string name="user_log_out">Выйти</string>
+    <string name="user_info_login">Логин</string>
+    <string name="user_info_role">Роль</string>
+    <string name="user_sign_up_label">Регистрация</string>
+    <string name="user_password_repeat_hint">Повтор пароля</string>
 </resources>

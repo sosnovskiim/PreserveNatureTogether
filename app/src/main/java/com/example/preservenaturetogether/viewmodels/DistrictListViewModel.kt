@@ -7,13 +7,21 @@ import com.example.preservenaturetogether.repository.CategoryRepository
 import com.example.preservenaturetogether.data.District
 import com.example.preservenaturetogether.repository.DistrictRepository
 import com.example.preservenaturetogether.data.Site
+import com.example.preservenaturetogether.data.User
+import com.example.preservenaturetogether.repository.RoleRepository
 import com.example.preservenaturetogether.repository.SiteRepository
+import com.example.preservenaturetogether.repository.UserRepository
 
 class DistrictListViewModel(
+    private val userRepository: UserRepository,
+    private val roleRepository: RoleRepository,
     districtRepository: DistrictRepository,
     categoryRepository: CategoryRepository,
     private val siteRepository: SiteRepository,
 ) : ViewModel() {
+    private var user = User()
+    val userLogin: String get() = user.login
+    val userRole: String get() = roleRepository.getRole(roleId = user.roleId).name
     val districtList: List<District> = districtRepository.getDistrictList()
     val categoryList: List<Category> = categoryRepository.getCategoryList()
     val siteList: List<List<Site>>
@@ -24,6 +32,10 @@ class DistrictListViewModel(
             }
             return result
         }
+
+    fun setUser(userId: Int) {
+        user = userRepository.getUserById(userId = userId)
+    }
 }
 
 class DistrictListGroupItemViewModel(
@@ -45,6 +57,8 @@ class SiteListChildItemViewModel(
 }
 
 class DistrictListViewModelFactory(
+    private val userRepository: UserRepository,
+    private val roleRepository: RoleRepository,
     private val districtRepository: DistrictRepository,
     private val categoryRepository: CategoryRepository,
     private val siteRepository: SiteRepository,
@@ -52,6 +66,8 @@ class DistrictListViewModelFactory(
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
         DistrictListViewModel(
+            userRepository = userRepository,
+            roleRepository = roleRepository,
             districtRepository = districtRepository,
             categoryRepository = categoryRepository,
             siteRepository = siteRepository,

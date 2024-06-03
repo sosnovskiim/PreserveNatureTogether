@@ -41,3 +41,21 @@ data class Site(
     val photo1: String = "",
     val photo2: String = "",
 )
+
+data class Role(
+    val id: Int = 0,
+    val name: String = "",
+) {
+    companion object {
+        const val ADMIN = "Администратор"
+        const val EDITOR = "Редактор"
+        const val READER = "Читатель"
+    }
+}
+
+data class User(
+    val id: Int = 0,
+    val roleId: Int = 0,
+    val login: String = "",
+    val password: String = "",
+)

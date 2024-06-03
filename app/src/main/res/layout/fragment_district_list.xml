@@ -1,14 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ExpandableListView
-        android:id="@+id/district_list"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:childDivider="@color/white"
-        android:divider="@color/white"
-        android:groupIndicator="@null"
-        tools:listitem="@layout/list_group_item_district" />
+        android:layout_height="match_parent">
+
+        <ExpandableListView
+            android:id="@+id/district_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:childDivider="@color/white"
+            android:divider="@color/white"
+            android:groupIndicator="@null"
+            app:layout_constraintBottom_toTopOf="@id/user_layout_info"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/list_group_item_district" />
+
+        <LinearLayout
+            android:id="@+id/user_layout_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/district_list">
+
+            <TextView
+                android:id="@+id/user_info_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/calibri"
+                android:gravity="center"
+                android:text="@string/user_info_login"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/user_info_role"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/calibri"
+                android:gravity="center"
+                android:text="@string/user_info_role"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/user_log_out_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_outline"
+                android:backgroundTint="@color/grey"
+                android:fontFamily="@font/calibri"
+                android:gravity="center"
+                android:text="@string/user_log_out"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
